@@ -1,0 +1,33 @@
+goos: darwin
+goarch: arm64
+pkg: benchmark
+cpu: Apple M2 Pro
+BenchmarkMeyermarcelAhocorasick1ModCompileByteSlices-12        	       7	 147306387 ns/op	375598178 B/op	 1651022 allocs/op
+BenchmarkBobu1ModCompile-12                                    	       3	 466245569 ns/op	1843877128 B/op	 2266504 allocs/op
+BenchmarkAnknown1ModCompile-12                                 	       2	 588484500 ns/op	642526904 B/op	 7277482 allocs/op
+BenchmarkMeyermarcelAhocorasick10ModCompileByteSlices-12       	      60	  19922599 ns/op	55672370 B/op	  182122 allocs/op
+BenchmarkBobu10ModCompile-12                                   	      21	  53690298 ns/op	311582376 B/op	  382308 allocs/op
+BenchmarkAnknown10ModCompile-12                                	      20	  50229723 ns/op	70783386 B/op	  862681 allocs/op
+BenchmarkMeyermarcelAhocorasick100ModCompileByteSlices-12      	     688	   1658434 ns/op	 5149901 B/op	   17122 allocs/op
+BenchmarkBobu100ModCompile-12                                  	     200	   5962698 ns/op	38607438 B/op	   47882 allocs/op
+BenchmarkAnknown100ModCompile-12                               	     211	   5556477 ns/op	 6616814 B/op	   96436 allocs/op
+BenchmarkMeyermarcelAhocorasick1000ModCompileByteSlices-12     	   12202	     96906 ns/op	  113883 B/op	    1922 allocs/op
+BenchmarkBobu1000ModCompile-12                                 	    1316	    860389 ns/op	 4389845 B/op	    5508 allocs/op
+BenchmarkAnknown1000ModCompile-12                              	    2107	    484372 ns/op	  674890 B/op	   10742 allocs/op
+BenchmarkMeyermarcelAhocorasick10000ModCompileByteSlices-12    	   58320	     20536 ns/op	  100121 B/op	     214 allocs/op
+BenchmarkBobu10000ModCompile-12                                	   13784	     94492 ns/op	  479023 B/op	     614 allocs/op
+BenchmarkAnknown10000ModCompile-12                             	   26820	     44373 ns/op	   71791 B/op	    1186 allocs/op
+BenchmarkMeyermarcelAhocorasick1ModFindAllByteSlice-12         	      30	  38581481 ns/op	 6893016 B/op	   80287 allocs/op
+BenchmarkBobu1ModFind-12                                       	      42	  27385917 ns/op	 8693548 B/op	   80389 allocs/op
+BenchmarkAnknown1ModFind-12                                    	      20	  55742273 ns/op	 8193626 B/op	   97095 allocs/op
+BenchmarkMeyermarcelAhocorasick10ModFindAllByteSlice-12        	     333	   3750386 ns/op	  487707 B/op	    7767 allocs/op
+BenchmarkBobu10ModFind-12                                      	     410	   2668826 ns/op	  688075 B/op	    7828 allocs/op
+BenchmarkAnknown10ModFind-12                                   	     204	   5474205 ns/op	  531081 B/op	    9352 allocs/op
+BenchmarkMeyermarcelAhocorasick100ModFindAllByteSlice-12       	    3450	    345370 ns/op	   43644 B/op	     782 allocs/op
+BenchmarkBobu100ModFind-12                                     	    4747	    248172 ns/op	   62509 B/op	     787 allocs/op
+BenchmarkAnknown100ModFind-12                                  	    2086	    555369 ns/op	   47053 B/op	     937 allocs/op
+BenchmarkMeyermarcelAhocorasick1000ModFindAllByteSlice-12      	   32932	     35739 ns/op	    5210 B/op	      98 allocs/op
+BenchmarkBobu1000ModFind-12                                    	   63788	     16246 ns/op	    7096 B/op	      98 allocs/op
+BenchmarkAnknown1000ModFind-12                                 	   18610	     62470 ns/op	    5594 B/op	     115 allocs/op
+PASS
+ok  	benchmark	46.952s
