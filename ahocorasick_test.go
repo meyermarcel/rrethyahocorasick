@@ -21,7 +21,7 @@ func TestFindAllByteSlice(t *testing.T) {
 		[]byte("hers"),
 		[]byte("she")},
 	)
-	m.findAll([]byte("ushers")) // => { "she" 1 }, { "he" 2}, { "hers" 2 }
+	m.FindAllByteSlice([]byte("ushers")) // => { "she" 1 }, { "he" 2}, { "hers" 2 }
 	tests := []struct {
 		patterns [][]byte
 		expected []Match
@@ -65,7 +65,7 @@ func TestFindAllByteSlice(t *testing.T) {
 	}
 	for _, test := range tests {
 		matcher := compile(test.patterns)
-		got := matcher.findAll(test.text)
+		got := matcher.FindAllByteSlice(test.text)
 		gotConverted := convert(got)
 		if !(len(got) == 0 && len(test.expected) == 0) &&
 			!reflect.DeepEqual(gotConverted, test.expected) {
@@ -227,4 +227,20 @@ func ExampleMatcher_FindAllString() {
 
 	// Output:
 	// [{ "he" 2 } { "she" 1 } { "she" 1 } { "hers" 2 }]
+}
+
+func ExampleMatcher_Matches() {
+	matcher := CompileStrings([]string{
+		"he",
+		"she",
+		"his",
+		"hers",
+		"she",
+	})
+	for m := range matcher.Matches([]byte("ushers")) {
+		fmt.Print(m)
+	}
+
+	// Output:
+	// { "he" 2 }{ "she" 1 }{ "she" 1 }{ "hers" 2 }
 }

@@ -5,6 +5,7 @@ package ahocorasick
 import (
 	"bytes"
 	"fmt"
+	"iter"
 	"sort"
 )
 
@@ -347,28 +348,33 @@ func (m *Match) String() string {
 	return fmt.Sprintf(`{ "%s" %d }`, m.Word, m.Index)
 }
 
-func (m *Matcher) findAll(text []byte) []*Match {
-	var matches []*Match
-	state := 0
-	for i, b := range text {
-		offset := int(b)
-		for state != 0 && !m.hasEdge(state, offset) {
-			state = m.fail[state]
-		}
+func (m *Matcher) Matches(text []byte) iter.Seq[*Match] {
+	return func(yield func(*Match) bool) {
+		state := 0
+		for i, b := range text {
+			offset := int(b)
+			for state != 0 && !m.hasEdge(state, offset) {
+				state = m.fail[state]
+			}
 
-		if m.hasEdge(state, offset) {
-			state = m.base[state] + offset
-		}
-		for _, wordlen := range m.output[state] {
-			matches = append(matches, &Match{text[i-wordlen+1 : i+1], i - wordlen + 1})
+			if m.hasEdge(state, offset) {
+				state = m.base[state] + offset
+			}
+			for _, wordlen := range m.output[state] {
+				if !yield(&Match{text[i-wordlen+1 : i+1], i - wordlen + 1}) {
+					return
+				}
+			}
 		}
 	}
-	return matches
 }
 
 // FindAllByteSlice finds all instances of the patterns in the text.
 func (m *Matcher) FindAllByteSlice(text []byte) (matches []*Match) {
-	return m.findAll(text)
+	for match := range m.Matches(text) {
+		matches = append(matches, match)
+	}
+	return matches
 }
 
 // FindAllString finds all instances of the patterns in the text.
