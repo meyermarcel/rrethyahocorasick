@@ -44,7 +44,7 @@ fmt.Print(matcher.FindAllString("ushers"))
 See [benchmark/result.txt](benchmark/result.txt) or execute
 
 ```
-(cd benchmark/ && go test -bench . -benchmem)
+(cd benchmark/ && go test -bench . -benchmem | tee result.txt)
 ```
 
 ### Reference Papers
