@@ -196,14 +196,14 @@ func (m *Matcher) findBase(edges []byte) int {
 		return leaf
 	}
 
-	min := int(edges[0])
-	max := int(edges[len(edges)-1])
-	width := max - min
+	minE := int(edges[0])
+	maxE := int(edges[len(edges)-1])
+	width := maxE - minE
 	freeState := m.firstFreeState()
 	for freeState != -1 {
 		valid := true
 		for _, e := range edges[1:] {
-			state := freeState + int(e) - min
+			state := freeState + int(e) - minE
 			if state >= len(m.check) {
 				break
 			} else if m.check[state] >= 0 {
@@ -216,14 +216,14 @@ func (m *Matcher) findBase(edges []byte) int {
 			if freeState+width >= len(m.check) {
 				m.increaseSize(width - len(m.check) + freeState + 1)
 			}
-			return freeState - min
+			return freeState - minE
 		}
 
 		freeState = m.nextFreeState(freeState)
 	}
 	freeState = len(m.check)
 	m.increaseSize(width + 1)
-	return freeState - min
+	return freeState - minE
 }
 
 // increaseSize increases the size of base, check, and fail to ensure they
